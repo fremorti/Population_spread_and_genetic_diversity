@@ -1,6 +1,3 @@
-setwd('D:/OneDrive - UGent/Doctoraat Gent/Invasion/4_diversity')
-#setwd('D:/fremorti/OneDrive - UGent/OneDrive - ugentbe/Doctoraat Gent/Invasion/4_diversity')
-
 library(car)
 library(tidyverse)
 library(ggplot2)
