@@ -48,11 +48,11 @@ fite1$fit
 
 
 #extract posteriors
-parame1 <- fite1 %>% posterior_samples() %>% mutate('slope Gradient' = .$'b_day:divsfl'+.$'b_environmentG:day:divsfl', 
-                                                    'slope Tomato' = .$'b_day:divsfl'+.$'b_environmentT:day:divsfl',
+parame1 <- fite1 %>% posterior_samples() %>% mutate('slope Gradient' = .$'b_day:divsfl'+.$'b_environmentgradient:day:divsfl', 
+                                                    'slope Tomato' = .$'b_day:divsfl'+.$'b_environmenttomato:day:divsfl',
                                                     'slope Bean' = .$'b_day:divsfl',
-                                                    dG = .$b_divsfl + .$'b_environmentG:divsfl',
-                                                    dT = .$b_divsfl + .$'b_environmentT:divsfl',
+                                                    dG = .$b_divsfl + .$'b_environmentgradient:divsfl',
+                                                    dT = .$b_divsfl + .$'b_environmenttomato:divsfl',
                                                     dB = .$b_divsfl)
 
 #collect differences in slopes and intercepts from posterior
@@ -115,7 +115,6 @@ fite2 <- brm(data = edge, family = gaussian,
                        prior(normal(0,4), class = b)),
              iter = 5000, warmup = 2000, chains = 2, cores = 2)
 fite2$fit
-plot(fite2)
 
 #sample posterior and calculated the estimated CV
 poste2 <- fitted(fite2, newdata = nde, re_formula = NA, probs = c(0.09, 0.91))%>%
